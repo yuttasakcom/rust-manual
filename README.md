@@ -293,3 +293,121 @@ let home = IpAddr::V4(String::from("127.0.0.1"));
 let loopback = IpAddr::V6(String::from("::1"));
 
 ```
+
+## Import
+
+```rust
+use package_name::module_name::struct_name;
+
+use package_name::{
+    module_name1::struct_name1,
+    module_name2::struct_name2,
+};
+```
+
+## Trait
+
+```rust
+use crate::module_name::trait_name;
+
+pub trait Summary {
+    fn summarize(&self) -> String;
+}
+```
+
+## Enum
+
+```rust
+enum Coin {
+    Penny,
+    Nickel,
+    Dime,
+    Quarter,
+    Other,
+}
+
+fn value_in_cents(coin: Coin) -> u8 {
+    match coin {
+        Coin::Penny => 1,
+        Coin::Nickel => 5,
+        Coin::Dime => 10,
+        Coin::Quarter => 25,
+        _ => 0,
+    }
+}
+
+fn plus_one(x: Option<i32>) -> Option<i32> {
+        match x {
+            None => None,
+            Some(i) => Some(i + 1),
+        }
+    }
+
+    let five = Some(5);
+    let six = plus_one(five);
+    let none = plus_one(None);
+```
+
+## Hash Maps
+
+```rust
+use std::collections::HashMap;
+
+fn main() {
+    let mut scores = HashMap::new();
+
+    scores.insert(String::from("Blue"), 10);
+    scores.insert(String::from("Yellow"), 50);
+
+    let team_name = String::from("Blue");
+    let score = scores.get(&team_name);
+
+    match score {
+        Some(value) => println!("The score of {} is {}", team_name, value),
+        None => println!("The score of {} is not available", team_name),
+    }
+
+    for (key, value) in &scores {
+        println!("{}: {}", key, value);
+    }
+
+    scores.entry(String::from("Blue")).or_insert(50);
+    scores.entry(String::from("Red")).or_insert(50);
+
+    for (key, value) in &scores {
+        println!("{}: {}", key, value);
+    }
+
+    let text = "hello world wonderful world";
+    let mut map = HashMap::new();
+
+    for word in text.split_whitespace() {
+        let count = map.entry(word).or_insert(0);
+        *count += 1;
+    }
+
+    for (key, value) in &map {
+        println!("{}: {}", key, value);
+    }
+}
+```
+
+## Unwrap
+
+```rust
+use std::collections::HashMap;
+
+fn main() {
+    let mut scores = HashMap::new();
+
+    scores.insert(String::from("Blue"), 10);
+    scores.insert(String::from("Yellow"), 50);
+
+    let team_name = String::from("Yellow");
+    let score = scores.get(&team_name);
+    if score.is_err() {
+        return;
+    }
+    println!({score.unwrap()});
+}
+```

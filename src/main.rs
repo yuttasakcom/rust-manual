@@ -1,6 +1,15 @@
-fn main() {
-    let s1 = String::from("hello");
-    let s2 = s1.clone();
+use std::collections::HashMap;
 
-    println!("s1 = {}, s2 = {}", s1, s2);
+fn main() {
+    let mut scores = HashMap::new();
+
+    scores.insert(String::from("Blue"), 10);
+    scores.insert(String::from("Yellow"), 50);
+
+    let team_name = String::from("Yellow");
+    let score = scores.get(&team_name);
+    if score.is_none() {
+        return;
+    }
+    println!("{}", score.unwrap());
 }
